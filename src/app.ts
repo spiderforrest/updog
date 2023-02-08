@@ -1,8 +1,10 @@
 const express = require("express");
-const app = express();
+const app: express.Application = express();
+
 app.use(express.json()); //accept json
 
-app.get("/", async (req: object, res: object, next: function) => {
+app.get("/", async (req, res, next) => {
+  console.log("ping");
   console.log("ping");
   res.send("hiiii\n");
 });
