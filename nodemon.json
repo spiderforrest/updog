@@ -2,4 +2,4 @@
 {
   "watch": [ "src" ],
   "ext": "js",
-  "exec": "npm build && npm start" }
+  "exec": "npm run build && npm start" }
