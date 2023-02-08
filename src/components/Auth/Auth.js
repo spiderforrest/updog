@@ -25,7 +25,7 @@ export default function Auth() {
   return (
     <div className="auth-box">
       <div className="auth-panel">
-        <div className="panel-heading">Welcome to your favorite to-do list!</div>
+        <div className="panel-heading">Welcome to your favorite chat app!</div>
         <div className="panel-tabs">
           <NavLink to="/auth/sign-in" className="auth-link" activeClassName="is-active">
             Sign In
