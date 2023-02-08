@@ -1,8 +1,8 @@
-import { Redirect, Route, Switch } from "react-router-dom";
-import Auth from "./components/Auth/Auth.js";
-import Header from "./components/Header/Header.js";
-import { useUser } from "./context/UserContext.js";
-import "./App.css";
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Auth from './components/Auth/Auth.js';
+import Header from './components/Header/Header.js';
+import { useUser } from './context/UserContext.js';
+import './App.css';
 
 function App() {
   const { user } = useUser();

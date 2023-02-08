@@ -1,5 +1,5 @@
 export function getUser() {}
 
-export async function authUser(email, password, type) {}
+export async function authUser() {}
 
 export async function signOut() {}
