@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <nav className="navbar" role="navigation">
       <div className="site-title">
-        <h1>✓To-Do List!✓</h1>
+        <h1>What&apos;s Updog?</h1>
       </div>
       <div className="links">
         {!user && (
