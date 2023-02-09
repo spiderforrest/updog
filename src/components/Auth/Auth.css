@@ -11,7 +11,7 @@
   border-radius: 15px;
   padding: 10px;
   background-color: rgb(146, 146, 146);
-  box-shadow: 8px 8px rgba(0, 0, 0, 0.69);
+  box-shadow: 8px 8px 8px 4px rgba(0, 0, 0, 0.69);
 }
 
 .auth-panel div {
@@ -36,7 +36,7 @@
   text-decoration: none;
   font-weight: bold;
   background-color: rgb(130, 130, 130);
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.69);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.69);
 }
 
 .auth-link:hover {
@@ -65,7 +65,7 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.69);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.69);
 }
 
 .submit-button:hover {
