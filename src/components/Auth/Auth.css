@@ -7,10 +7,11 @@
 }
 
 .auth-panel {
-  border: solid 4px black;
+  border: solid 3px black;
   border-radius: 15px;
   padding: 10px;
   background-color: rgb(146, 146, 146);
+  box-shadow: 8px 8px rgba(0, 0, 0, 0.69);
 }
 
 .auth-panel div {
@@ -19,13 +20,15 @@
 }
 
 .panel-heading {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-style: italic;
 }
 .panel-tabs {
   margin: 5px;
 }
 .auth-link {
-  margin: 4px;
+  margin: 7px;
   color: black;
   border: solid 2px black;
   border-radius: 15px;
@@ -33,6 +36,7 @@
   text-decoration: none;
   font-weight: bold;
   background-color: rgb(130, 130, 130);
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.69);
 }
 
 .auth-link:hover {
@@ -61,6 +65,7 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.69);
 }
 
 .submit-button:hover {
@@ -71,7 +76,7 @@
 .auth-input {
   border: solid black 2px;
   border-radius: 15px;
-  padding: 5px;
+  padding: 8px;
 }
 
 .auth-input:focus {

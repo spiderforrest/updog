@@ -1,3 +1,7 @@
+.navbar {
+  border-bottom: solid 3px black;
+}
+
 .sign-in-up-links {
   position: absolute;
   right: 15px;
@@ -8,13 +12,14 @@
   display: flex;
   flex-direction: column;
   padding: 5px;
-  margin: 5px;
+  margin: 10px;
   border: solid black 2px;
   border-radius: 15px;
   background-color: rgb(69, 69, 69);
   color: white;
   text-decoration: none;
   font-weight: bold;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.69);
 }
 
 .link:hover {
@@ -60,5 +65,7 @@
 }
 
 h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 2.5em;
+  text-shadow: 3px 3px rgba(0, 0, 0, 0.291);
 }
