@@ -30,6 +30,7 @@ app.use('/test', testRoute);
 
 app.get('/profile', requiresAuth(), (req: any, res: any) => {
   res.send(JSON.stringify(req.oidc.user));
+  console.log(req.oidc.user);
 });
 
 app.listen(3000, () => {
