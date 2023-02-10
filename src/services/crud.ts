@@ -1,5 +1,4 @@
 const express = require('express');
-
 const Pool = require("pg").Pool;
 const pool = new Pool({
   user: "express",
@@ -9,7 +8,19 @@ const pool = new Pool({
   port: 5432,
 });
 
+const createMessage = (response: any, from: string, to: string, body: string) => {
 
+  pool.query(
+    "INSERT INTO messages (from_user, to_user, body) VALUES ($1, $2, $3) RETURNING *",
+    [from, to, body],
+    (error: any, results: any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+    }
+  );
+};
 
 
 const getUsers = (request: any, response: any) => {
@@ -80,4 +91,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-};
+  createMessage
+}

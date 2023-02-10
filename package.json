@@ -26,7 +26,8 @@
     "express": "^4.18.2",
     "express-openid-connect": "^2.12.0",
     "node-postgres": "^0.6.2",
-    "passport": "^0.6.0"
+    "passport": "^0.6.0",
+    "pg": "^8.9.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.20",

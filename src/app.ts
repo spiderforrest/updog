@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
-const authRoute = require("./route/auth");
 const app: Express = express();
+const testRoute: any = require('./route/test');
 const { auth, requiresAuth } = require('express-openid-connect');
 require('dotenv').config()
 
@@ -24,6 +24,9 @@ app.use(express.json()); //accept json
 app.get('/', (req: any, res: any) => {
   res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
+
+// testing messages for now
+app.use('/test', testRoute);
 
 app.get('/profile', requiresAuth(), (req: any, res: any) => {
   res.send(JSON.stringify(req.oidc.user));
