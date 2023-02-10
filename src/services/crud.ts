@@ -1,13 +1,19 @@
+const express = require('express');
+
 const Pool = require("pg").Pool;
 const pool = new Pool({
-  user: "me",
+  user: "express",
   host: "localhost",
-  database: "api2",
-  password: "12345",
+  database: "auth",
+  password: "burger",
   port: 5432,
 });
-const getUsers = (request, response) => {
-  pool.query("SELECT * FROM users ORDER BY id ASC", (error, results) => {
+
+
+
+
+const getUsers = (request: any, response: any) => {
+  pool.query("SELECT * FROM users ORDER BY id ASC", (error: any, results: any) => {
     if (error) {
       throw error;
     }
@@ -15,10 +21,10 @@ const getUsers = (request, response) => {
   });
 };
 
-const getUserById = (request, response) => {
+const getUserById = (request: any, response: any) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (error, results) => {
+  pool.query("SELECT * FROM users WHERE id = $1", [id], (error: any, results: any) => {
     if (error) {
       throw error;
     }
@@ -26,13 +32,13 @@ const getUserById = (request, response) => {
   });
 };
 
-const createUser = (request, response) => {
+const createUser = (request: any, response: any) => {
   const { name, email } = request.body;
 
   pool.query(
     "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *",
     [name, email],
-    (error, results) => {
+    (error: any, results: any) => {
       if (error) {
         throw error;
       }
@@ -41,14 +47,14 @@ const createUser = (request, response) => {
   );
 };
 
-const updateUser = (request, response) => {
+const updateUser = (request: any, response: any) => {
   const id = parseInt(request.params.id);
   const { name, email } = request.body;
 
   pool.query(
     "UPDATE users SET name = $1, email = $2 WHERE id = $3",
     [name, email, id],
-    (error, results) => {
+    (error: any, results: any) => {
       if (error) {
         throw error;
       }
@@ -57,10 +63,10 @@ const updateUser = (request, response) => {
   );
 };
 
-const deleteUser = (request, response) => {
+const deleteUser = (request: any, response: any) => {
   const id = parseInt(request.params.id);
 
-  pool.query("DELETE FROM users WHERE id = $1", [id], (error, results) => {
+  pool.query("DELETE FROM users WHERE id = $1", [id], (error: any, results: any) => {
     if (error) {
       throw error;
     }
