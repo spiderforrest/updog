@@ -1,15 +1,15 @@
 const express = require('express');
 const Pool = require("pg").Pool;
+require('dotenv').config()
 const pool = new Pool({
-  user: "express",
-  host: "localhost",
-  database: "auth",
-  password: "burger",
-  port: 5432,
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DB,
+  password: process.env.PG_PASS,
+  port: process.env.PG_PORT,
 });
 
 const createMessage = (response: any, from: string, to: string, body: string) => {
-
   pool.query(
     "INSERT INTO messages (from_user, to_user, body) VALUES ($1, $2, $3) RETURNING *",
     [from, to, body],

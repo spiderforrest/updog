@@ -8,10 +8,10 @@ require('dotenv').config()
 const authConfig = {
   authRequired: false,
   auth0Logout: true,
-  secret: process.env.SECRET,
-  baseURL: 'http://localhost:3000',
-  clientID: 'hH7Zr0TeGebaqnUicrT6bQIte362UdDv',
-  issuerBaseURL: 'https://dev-t5w8414f2dpnb1q4.us.auth0.com'
+  secret: process.env.AUTH_SECRET,
+  baseURL: process.env.AUTH_BASE_URL,
+  clientID: process.env.AUTH_CLIENT_ID,
+  issuerBaseURL: process.env.AUTH_ISSUER_URL
 };
 
 // auth router attaches /login, /logout, and /callback routes to the baseURL
