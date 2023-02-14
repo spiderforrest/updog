@@ -22,7 +22,10 @@ const createMessage = (response: any, from: string, to: string, body: string) =>
   );
 };
 
+// const getMessagePage
+// const 
 
+// {{{ old user table template code
 const getUsers = (request: any, response: any) => {
   pool.query("SELECT * FROM users ORDER BY id ASC", (error: any, results: any) => {
     if (error) {
@@ -85,6 +88,8 @@ const deleteUser = (request: any, response: any) => {
   });
 };
 
+// }}}
+
 module.exports = {
   getUsers,
   getUserById,
@@ -93,3 +98,5 @@ module.exports = {
   deleteUser,
   createMessage
 }
+
+// vim:foldmethod=marker
