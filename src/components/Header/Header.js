@@ -1,10 +1,17 @@
-import { Link } from 'react-router-dom';
+import { useRef } from 'react';
+import { useState } from 'react';
 import { useUser } from '../../context/UserContext.js';
+import { useOnClickOutside } from '../../hooks.js';
 import { signOut } from '../../services/auth.js';
+import Burger from '../Burger/Burger.js';
+import Menu from '../Menu/Menu.js';
 import './Header.css';
 
 export default function Header() {
   const { user, setUser } = useUser();
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  useOnClickOutside(node, () => setOpen(false));
 
   const handleLogout = async () => {
     try {
@@ -17,17 +24,13 @@ export default function Header() {
   return (
     <nav className="navbar" role="navigation">
       <div className="site-title">
-        <h1>What&apos;s Updog?</h1>
+        <h1>Updog</h1>
       </div>
       <div className="links">
         {!user && (
-          <div className="sign-in-up-links">
-            <Link className="link" to="/auth/sign-in">
-              Sign In
-            </Link>
-            <Link className="link" to="/auth/sign-up">
-              Sign Up
-            </Link>
+          <div ref={node}>
+            <Burger open={open} setOpen={setOpen} />
+            <Menu open={open} setOpen={setOpen} />
           </div>
         )}
         {user && (

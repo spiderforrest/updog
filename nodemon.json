@@ -1,0 +1,4 @@
+{
+  "watch": [ "src" ],
+  "ext": "js",
+  "exec": "npm start" }
