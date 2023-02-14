@@ -1,4 +1,5 @@
 import React from 'react';
+import './MessageWindow.css';
 
 export default function MessageWindow() {
   return (
@@ -10,9 +11,9 @@ export default function MessageWindow() {
       <p className="received">did u bring the updog?</p>
       <p className="sent">what&apos;s updog?</p>
       <p className="received">oh not much</p>
-      <div>
-        <input type="text"></input>
-        <button>Send</button>
+      <div className="chat-controls">
+        <input className="message-input" type="text"></input>
+        <button className="send-button">Send</button>
       </div>
     </div>
   );

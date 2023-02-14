@@ -1,0 +1,7 @@
+.chat-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(57, 57, 57);
+}

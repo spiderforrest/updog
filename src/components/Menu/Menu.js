@@ -5,7 +5,7 @@ const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
       <a href="/auth/sign-in">|Sign In|</a>
-      <a href="/auth/sign-up">|Sign Up|</a>
+      <a href="/chat">|Chat|</a>
     </StyledMenu>
   );
 };

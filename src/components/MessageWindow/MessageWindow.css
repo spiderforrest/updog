@@ -1,0 +1,58 @@
+.message-window {
+  border: solid 3px black;
+  border-radius: 15px;
+  padding: 10px;
+  background-color: rgb(146, 146, 146);
+  box-shadow: 8px 8px 8px 4px rgba(7, 7, 7, 0.69);
+  align-self: flex-end;
+  padding: 0px;
+}
+
+.chat-controls {
+  border-top: solid 2px black;
+}
+
+.send-button {
+  padding: 5px;
+  margin: 5px;
+  border: solid black 2px;
+  border-radius: 15px;
+  background-color: rgb(69, 69, 69);
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.69);
+  font-family: monospace;
+}
+
+.send-button:hover {
+  cursor: pointer;
+  background-color: rgba(69, 69, 69, 0.69);
+}
+
+.message-input {
+  border: solid black 2px;
+  border-radius: 15px;
+  padding: 6px;
+  margin: 2px;
+}
+
+.message-input:focus {
+  outline: 3px rgb(108, 108, 203) solid;
+}
+
+.sent {
+  text-align: right;
+  padding: 12px 7px 12px 0px;
+  margin: 0px;
+  background-color: rgb(134, 134, 134);
+  border-radius: 15px;
+}
+
+.received {
+  text-align: left;
+  padding: 12px 0px 12px 7px;
+  margin: 0px;
+  background-color: rgb(166, 166, 166);
+  border-radius: 15px;
+}
