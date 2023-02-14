@@ -6,6 +6,8 @@
   box-shadow: 8px 8px 8px 4px rgba(7, 7, 7, 0.69);
   align-self: flex-end;
   padding: 0px;
+  box-sizing: border-box;
+  width: fit-content;
 }
 
 .chat-controls {
@@ -41,18 +43,34 @@
   outline: 3px rgb(108, 108, 203) solid;
 }
 
+.message-div {
+  border-radius: 15px;
+  margin: 5px;
+  width: 97%;
+  display: flex;
+}
+
+.div-sent {
+  justify-content: flex-end;
+}
+.div-received {
+  justify-content: flex-start;
+}
+
+.message {
+  width: fit-content;
+  border-radius: 15px;
+  padding: 12px;
+}
+
 .sent {
   text-align: right;
-  padding: 12px 7px 12px 0px;
+  background-color: rgb(108, 108, 203);
   margin: 0px;
-  background-color: rgb(134, 134, 134);
-  border-radius: 15px;
 }
 
 .received {
   text-align: left;
-  padding: 12px 0px 12px 7px;
-  margin: 0px;
   background-color: rgb(166, 166, 166);
-  border-radius: 15px;
+  margin: 0px;
 }

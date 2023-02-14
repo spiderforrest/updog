@@ -1,7 +1,8 @@
 .chat-page {
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   height: 100vh;
   background-color: rgb(57, 57, 57);
+  padding: 0px 5px 0px 5px;
 }
