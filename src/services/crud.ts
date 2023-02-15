@@ -1,13 +1,13 @@
-const express = require('express');
-const Pool = require("pg").Pool;
-require('dotenv').config()
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DB,
-  password: process.env.PG_PASS,
-  port: process.env.PG_PORT,
-});
+// const express = require('express');
+// const Pool = require("pg").Pool;
+// require('dotenv').config()
+// const pool = new Pool({
+//   user: process.env.PG_USER,
+//   host: process.env.PG_HOST,
+//   database: process.env.PG_DB,
+//   password: process.env.PG_PASS,
+//   port: process.env.PG_PORT,
+// });
 
 const createMessage = (response: any, from: string, to: string, body: string) => {
   pool.query(
