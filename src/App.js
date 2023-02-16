@@ -6,6 +6,7 @@ import './App.css';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './theme';
 import ChatPage from './components/ChatPage/ChatPage.js';
+import About from './components/About/About.js';
 
 function App() {
   const { user } = useUser();
@@ -15,8 +16,9 @@ function App() {
         <Header />
         <Switch>
           <Route path="/auth/:type" component={Auth} />
-          <Route path="/chat" component={ChatPage} />
-          <Route exact path="/">
+          <Route path="/home" component={ChatPage} />
+          <Route path="/about" component={About} />
+          <Route exact path="/" component={ChatPage}>
             <>
               {user && <Redirect to="/chat" />}
               {!user && <Redirect to="/auth/sign-in" />}

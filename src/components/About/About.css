@@ -1,0 +1,49 @@
+.about-page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(57, 57, 57);
+  box-sizing: border-box;
+  padding-top: 12vh;
+}
+
+.credit-subsect {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.credits-avatar {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 5rem;
+  box-shadow: 3px 3px 3px 2px rgba(7, 7, 7, 0.838);
+}
+
+.credits-bio {
+  display: flex;
+  justify-self: center;
+}
+
+.about-section {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 10%;
+  border: solid 3px black;
+  border-radius: 15px;
+  padding: 10px 30px;
+  background-color: rgb(146, 146, 146);
+  box-shadow: 8px 8px 8px 4px rgba(7, 7, 7, 0.69);
+  margin: 15px;
+  max-width: 1200px;
+  font-size: 1.1em;
+}
+
+.about-name {
+  margin: 10px 0px 0px 0px;
+}

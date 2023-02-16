@@ -4,8 +4,8 @@ import { StyledMenu } from './Menu.styled';
 const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
-      <a href="/auth/sign-in">|Sign In|</a>
-      <a href="/chat">|Chat|</a>
+      <a href="/home">|Home|</a>
+      <a href="/about">|About|</a>
     </StyledMenu>
   );
 };
