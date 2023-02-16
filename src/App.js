@@ -18,7 +18,7 @@ function App() {
           <Route path="/auth/:type" component={Auth} />
           <Route path="/home" component={ChatPage} />
           <Route path="/about" component={About} />
-          <Route exact path="/" component={ChatPage}>
+          <Route exact path="/" component={Auth}>
             <>
               {user && <Redirect to="/chat" />}
               {!user && <Redirect to="/auth/sign-in" />}
