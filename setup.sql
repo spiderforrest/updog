@@ -1,3 +1,7 @@
+DROP TABLE images CASCADE;
+DROP TABLE messages CASCADE;
+DROP TABLE users CASCADE;
+
 -- tables
 CREATE TABLE users (
     uuid UUID UNIQUE,
