@@ -9,12 +9,7 @@ const pool = new Pool({
   port: process.env.PG_PORT,
 });
 
-const createMessage = (
-  response: any,
-  from: string,
-  to: string,
-  body: string
-) => {
+const createMessage = ( response: any, from: string, to: string, body: string) => {
   pool.query(
     "INSERT INTO messages (from_user, to_user, body) VALUES ($1, $2, $3) RETURNING *",
     [from, to, body],
@@ -27,8 +22,24 @@ const createMessage = (
   );
 };
 
-// const getMessagePage
-// const
+
+// const createUser
+const createUser = (request: any, response: any) => {
+  const { username, email } = request.body;
+
+  pool.query(
+    "INSERT INTO users (username, email) VALUES ($1, $2) RETURNING *",
+    [username, email],
+    (error: any, results: any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+    }
+  );
+};
+// const createPage
+// const getPageMessages
 
 // {{{ old user table template code
 const getUsers = (request: any, response: any) => {
@@ -54,21 +65,6 @@ const getUserById = (request: any, response: any) => {
         throw error;
       }
       response.status(200).json(results.rows);
-    }
-  );
-};
-
-const createUser = (request: any, response: any) => {
-  const { name, email } = request.body;
-
-  pool.query(
-    "INSERT INTO users (name, email) VALUES ($1, $2) RETURNING *",
-    [name, email],
-    (error: any, results: any) => {
-      if (error) {
-        throw error;
-      }
-      response.status(201).send(`User added with ID: ${results.rows[0].id}`);
     }
   );
 };
