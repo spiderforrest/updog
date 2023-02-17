@@ -1,8 +1,6 @@
-
-
 -- tables
 CREATE TABLE users (
-    uuid UUID NOT NULL UNIQUE,
+    uuid UUID UNIQUE,
     username VARCHAR(64) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     hash VARCHAR(256) NOT NULL,
@@ -10,18 +8,22 @@ CREATE TABLE users (
 );
 
 CREATE TABLE messages (
-    id INT NOT NULL AUTO_INCREMENT,
-    sent TIMESTAMP default(current_timestamp)-- message sent time
-    FORIGN_KEY (from) REFERENCES users(uuid) NOT NULL,
-    FORIGN_KEY (to) REFERENCES users(uuid) NOT NULL,
+    id SERIAL UNIQUE,
+    sent TIMESTAMP default(current_timestamp), -- message sent time
+    from_user UUID REFERENCES users (uuid) NOT NULL,
+    to_user UUID REFERENCES users (uuid) NOT NULL,
     body TEXT, -- the message body
     read TIMESTAMP -- message read time
 );
 
 CREATE TABLE images (
     spec VARCHAR(16),
-    FORIGN_KEY (from) REFERENCES users(uuid) NOT NULL,
-    FORIGN_KEY (to) REFERENCES users(uuid) NOT NULL,
+    from_user UUID REFERENCES users (uuid) NOT NULL,
+    to_user UUID REFERENCES users (uuid) NOT NULL,
     image BYTEA,
-    FORIGN_KEY (first_msg) REFERENCES messages(id) NOT NULL UNIQUE
+    first_msg INT REFERENCES messages (id) NOT NULL
 );
+
+INSERT INTO users (uuid, username, email, hash) VALUES ( 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'bob', 'bob@urmom.com', 'hhhhhhh');
+INSERT INTO messages (from_user, to_user, body) VALUES ( 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'whatsupdoc');
+INSERT INTO images (from_user, to_user, first_msg) VALUES ( 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 1)
