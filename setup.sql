@@ -4,7 +4,7 @@ DROP TABLE users CASCADE;
 
 -- tables
 CREATE TABLE users (
-    uuid UUID UNIQUE,
+    uuid UUID UNIQUE default(gen_random_uuid()),
     username VARCHAR(64) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     /* hash VARCHAR(256) NOT NULL, */

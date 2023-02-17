@@ -17,7 +17,7 @@ const createMessage = ( response: any, from: string, to: string, body: string) =
       if (error) {
         throw error;
       }
-      response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+      response.status(201).send(`Message added with ID: ${results.rows[0].id}`);
     }
   );
 };
@@ -26,7 +26,6 @@ const createMessage = ( response: any, from: string, to: string, body: string) =
 // const createUser
 const createUser = (request: any, response: any) => {
   const { username, email } = request.body;
-
   pool.query(
     "INSERT INTO users (username, email) VALUES ($1, $2) RETURNING *",
     [username, email],
@@ -34,11 +33,12 @@ const createUser = (request: any, response: any) => {
       if (error) {
         throw error;
       }
-      response.status(201).send(`User added with ID: ${results.rows[0].id}`);
+      response.status(201).send(`User added with ID: ${results.rows[0].uuid}`);
     }
   );
 };
-// const createPage
+const createPage = (request: any, response: any) => {
+  const {
 // const getPageMessages
 
 // {{{ old user table template code
