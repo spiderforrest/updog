@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const Pool = require("pg").Pool;
-require('dotenv').config()
+require("dotenv").config();
 const pool = new Pool({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
@@ -9,7 +9,12 @@ const pool = new Pool({
   port: process.env.PG_PORT,
 });
 
-const createMessage = (response: any, from: string, to: string, body: string) => {
+const createMessage = (
+  response: any,
+  from: string,
+  to: string,
+  body: string
+) => {
   pool.query(
     "INSERT INTO messages (from_user, to_user, body) VALUES ($1, $2, $3) RETURNING *",
     [from, to, body],
@@ -23,27 +28,34 @@ const createMessage = (response: any, from: string, to: string, body: string) =>
 };
 
 // const getMessagePage
-// const 
+// const
 
 // {{{ old user table template code
 const getUsers = (request: any, response: any) => {
-  pool.query("SELECT * FROM users ORDER BY id ASC", (error: any, results: any) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM users ORDER BY id ASC",
+    (error: any, results: any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getUserById = (request: any, response: any) => {
   const id = parseInt(request.params.id);
 
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (error: any, results: any) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM users WHERE id = $1",
+    [id],
+    (error: any, results: any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const createUser = (request: any, response: any) => {
@@ -72,7 +84,7 @@ const updateUser = (request: any, response: any) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`User modified with ID: ${id}`);
+      response.status(200).send(`User ${name} modified with ID: ${id}`);
     }
   );
 };
@@ -80,12 +92,16 @@ const updateUser = (request: any, response: any) => {
 const deleteUser = (request: any, response: any) => {
   const id = parseInt(request.params.id);
 
-  pool.query("DELETE FROM users WHERE id = $1", [id], (error: any, results: any) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "DELETE FROM users WHERE id = $1",
+    [id],
+    (error: any, results: any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`User deleted with ID: ${id}`);
     }
-    response.status(200).send(`User deleted with ID: ${id}`);
-  });
+  );
 };
 
 // }}}
@@ -96,7 +112,7 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
-  createMessage
-}
+  createMessage,
+};
 
 // vim:foldmethod=marker
