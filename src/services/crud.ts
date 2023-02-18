@@ -9,7 +9,12 @@ const pool = new Pool({
   port: process.env.PG_PORT,
 });
 
-const createMessage = ( response: any, from: string, to: string, body: string) => {
+const createMessage = (
+  response: any,
+  from: string,
+  to: string,
+  body: string
+) => {
   pool.query(
     "INSERT INTO messages (from_user, to_user, body) VALUES ($1, $2, $3) RETURNING *",
     [from, to, body],
@@ -22,8 +27,6 @@ const createMessage = ( response: any, from: string, to: string, body: string) =
   );
 };
 
-
-// const createUser
 const createUser = (request: any, response: any) => {
   const { username, email } = request.body;
   pool.query(
@@ -37,9 +40,51 @@ const createUser = (request: any, response: any) => {
     }
   );
 };
-const createPage = (request: any, response: any) => {
-  const {
-// const getPageMessages
+
+// UNTESTED
+const createImage = (request: any, response: any) => {
+  const { fromUser, toUser, image, firstMessage } = request.body;
+  pool.query(
+    "INSERT INTO images (from_user, to_user, image, first_msg) VALUES ($1, $2, $3, $4) RETURNING *",
+    [fromUser, toUser, image, firstMessage],
+    (error: any, results: any) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).send("Image added");
+    }
+  );
+};
+
+// UNTESTED
+const getUsers = (request: any, response: any) => {
+  pool.query("SELECT * FROM users", (error: any, result: any) => {
+    if (error) {
+      return console.error("Failed to get users: ", error.stack);
+    }
+    return result;
+  });
+};
+
+// UNTESTED
+const getUserById = (request: any, response: any) => {
+  const { userId } = request.body;
+  pool.query(
+    "SELECT * FROM users WHERE uuid = $1",
+    [userID],
+    (error: any, result: any) => {
+      if (error) {
+        return console.error(
+          `Failed to get user with ID ${userID}: `,
+          error.stack
+        );
+      }
+      return result;
+    }
+  );
+};
+
+const retrieveMessageRange = (request: any, response: any) => {};
 
 // {{{ old user table template code
 const getUsers = (request: any, response: any) => {
