@@ -71,11 +71,11 @@ const getUserById = (request: any, response: any) => {
   const { userId } = request.body;
   pool.query(
     "SELECT * FROM users WHERE uuid = $1",
-    [userID],
+    [userId],
     (error: any, result: any) => {
       if (error) {
         return console.error(
-          `Failed to get user with ID ${userID}: `,
+          `Failed to get user with ID ${userId}: `,
           error.stack
         );
       }
@@ -86,73 +86,73 @@ const getUserById = (request: any, response: any) => {
 
 const retrieveMessageRange = (request: any, response: any) => {};
 
-// {{{ old user table template code
-const getUsers = (request: any, response: any) => {
-  pool.query(
-    "SELECT * FROM users ORDER BY id ASC",
-    (error: any, results: any) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    }
-  );
-};
+// // {{{ old user table template code
+// const getUsers = (request: any, response: any) => {
+//   pool.query(
+//     "SELECT * FROM users ORDER BY id ASC",
+//     (error: any, results: any) => {
+//       if (error) {
+//         throw error;
+//       }
+//       response.status(200).json(results.rows);
+//     }
+//   );
+// };
 
-const getUserById = (request: any, response: any) => {
-  const id = parseInt(request.params.id);
+// const getUserById = (request: any, response: any) => {
+//   const id = parseInt(request.params.id);
 
-  pool.query(
-    "SELECT * FROM users WHERE id = $1",
-    [id],
-    (error: any, results: any) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).json(results.rows);
-    }
-  );
-};
+//   pool.query(
+//     "SELECT * FROM users WHERE id = $1",
+//     [id],
+//     (error: any, results: any) => {
+//       if (error) {
+//         throw error;
+//       }
+//       response.status(200).json(results.rows);
+//     }
+//   );
+// };
 
-const updateUser = (request: any, response: any) => {
-  const id = parseInt(request.params.id);
-  const { name, email } = request.body;
+// const updateUser = (request: any, response: any) => {
+//   const id = parseInt(request.params.id);
+//   const { name, email } = request.body;
 
-  pool.query(
-    "UPDATE users SET name = $1, email = $2 WHERE id = $3",
-    [name, email, id],
-    (error: any, results: any) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`User ${name} modified with ID: ${id}`);
-    }
-  );
-};
+//   pool.query(
+//     "UPDATE users SET name = $1, email = $2 WHERE id = $3",
+//     [name, email, id],
+//     (error: any, results: any) => {
+//       if (error) {
+//         throw error;
+//       }
+//       response.status(200).send(`User ${name} modified with ID: ${id}`);
+//     }
+//   );
+// };
 
-const deleteUser = (request: any, response: any) => {
-  const id = parseInt(request.params.id);
+// const deleteUser = (request: any, response: any) => {
+//   const id = parseInt(request.params.id);
 
-  pool.query(
-    "DELETE FROM users WHERE id = $1",
-    [id],
-    (error: any, results: any) => {
-      if (error) {
-        throw error;
-      }
-      response.status(200).send(`User deleted with ID: ${id}`);
-    }
-  );
-};
+//   pool.query(
+//     "DELETE FROM users WHERE id = $1",
+//     [id],
+//     (error: any, results: any) => {
+//       if (error) {
+//         throw error;
+//       }
+//       response.status(200).send(`User deleted with ID: ${id}`);
+//     }
+//   );
+// };
 
-// }}}
+// // }}}
 
 module.exports = {
   getUsers,
   getUserById,
   createUser,
-  updateUser,
-  deleteUser,
+  // updateUser,
+  // deleteUser,
   createMessage,
 };
 
