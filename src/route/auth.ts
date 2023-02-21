@@ -1,39 +1,38 @@
 import express from "express";
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const crypto = require('crypto');
-const router = express.Router();
-
-// init database connection pool
-const Pool = require("pg").Pool;
+const authRoute = express.Router();
+const { signUp, signIn } = require("../services/crud")
 require('dotenv').config()
-const pool = new Pool({
-  user: process.env.PG_USER,
-  host: process.env.PG_HOST,
-  database: process.env.PG_DB,
-  password: process.env.PG_PASS,
-  port: process.env.PG_PORT,
+
+function genCookie(res: any, token: string) {
+  res
+    .cookie(process.env.COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.SECURE_COOKIES === 'true',
+      sameSite: process.env.SECURE_COOKIES === 'true' ? 'none' : 'strict',
+      maxAge: process.env.TOKEN_MAX_AGE
+    })
+    .json({ message: 'Signed in successfully!' });
+}
+
+authRoute.post("/signUp", async (req: any, res: any, next: any) => {
+  try {
+    const token = signUp(res, req.body.username, req.body.email, req.body.password);
+    genCookie(res, token)
+    next();
+  } catch(err){
+    next(err);
+  }
+});
+
+authRoute.post("/signIn", async (req: any, res: any, next: any) => {
+  try {
+    const token = signUp(res, req.body.username, req.body.email, req.body.password);
+    genCookie(res, token)
+    next();
+  } catch(err){
+    next(err);
+  }
 });
 
 
-passport.use(new LocalStrategy(function verify(username: any, password: any, cb: any) {
-  pool.query('SELECT * FROM users WHERE username = $1', [ username ], function(err: any, row: any) {
-    if (err) { return cb(err); }
-    if (!row) { return cb(null, false, { message: 'Incorrect username or password.' }); }
-
-    crypto.pbkdf2(password, row.salt, 310000, 32, 'sha256', function(err: any, hashedPassword: any) {
-      if (err) { return cb(err); }
-      if (!crypto.timingSafeEqual(row.hashed_password, hashedPassword)) {
-        return cb(null, false, { message: 'Incorrect username or password.' });
-      }
-      return cb(null, row);
-    });
-  });
-}));
-
-router.post('/authenticate', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/auth'
-}));
-
-module.exports = router;
+module.exports = authRoute;

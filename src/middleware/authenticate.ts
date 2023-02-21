@@ -12,7 +12,7 @@ module.exports = async (req: any, res: any, next: any) => {
     req.user = user;
 
     next();
-  } catch (err) {
+  } catch(err) {
     err.status = 401;
     next(err);
   }

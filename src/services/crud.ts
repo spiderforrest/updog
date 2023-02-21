@@ -12,8 +12,14 @@ const pool = new Pool({
 });
 
 // {{{ auth code
-// internal hashing functions
-const createUser = async (response: any, username: string, email: string, password: string) => {
+
+function makeToken(rows: any){
+  return jwt.sign({ ...rows[0] }, process.env.JWT_SECRET, {
+    expiresIn: '1 day',
+  });
+}
+
+const signUp = async (response: any, username: string, email: string, password: string) => {
   const hash = await bcrypt.hash(
     password,
     Number(process.env.SALT_ROUNDS)
@@ -26,6 +32,7 @@ const createUser = async (response: any, username: string, email: string, passwo
         throw error;
       }
       response.status(201).send(`User added with UUID: ${results.rows[0].uuid}`);
+      return makeToken(results.rows)
     }
   );
 }
@@ -40,13 +47,9 @@ const signIn = async (usernameOrEmail: string, password: string) => {
     if (!rows[0]) throw new Error('Invalid username or email');
     if (!bcrypt.compareSync(password, rows[0].hash))
     throw new Error('Invalid password');
-    const token = jwt.sign({ ...rows[0] }, process.env.JWT_SECRET, {
-      expiresIn: '1 day',
-    });
-
-    return token;
-  } catch (error) {
-    error.status = 401;
+    return makeToken(rows)
+  } catch (err) {
+    err.status = 401;
     throw error;
   }
 }
@@ -138,7 +141,9 @@ const createMessage = (response: any, from: string, to: string, body: string) =>
 // // }}}
 
 module.exports = {
-  createMessage
+  createMessage,
+  signIn,
+  signUp,
 }
 
 // vim:foldmethod=marker
