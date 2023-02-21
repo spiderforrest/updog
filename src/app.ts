@@ -16,15 +16,16 @@ app.get('/', (req: any, res: any) => {
   // res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
 });
 
-// Error handling & 404 middleware for when
-// a request doesn't match any app routes
-app.use(notFound);
-app.use(error);
 
 app.use('/api/v1/auth', authRoute);
 
 // testing messages for now
 app.use('/test', testRoute);
+
+// Error handling & 404 middleware for when
+// a request doesn't match any app routes
+app.use(notFound);
+app.use(error);
 
 app.listen(3000, () => {
   console.log("server started");
