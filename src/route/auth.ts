@@ -5,7 +5,7 @@ require('dotenv').config()
 
 function genCookie(res: any, token: string) {
   res
-    .cookie(process.env.COOKIE_NAME, token, {
+    .cookie('userCookie', token, {
       httpOnly: true,
       secure: process.env.SECURE_COOKIES === 'true',
       sameSite: process.env.SECURE_COOKIES === 'true' ? 'none' : 'strict',

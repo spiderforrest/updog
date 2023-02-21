@@ -1,9 +1,8 @@
-const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
 module.exports = async (req: any, res: any, next: any) => {
   try {
-    const cookie = req.cookies[process.env.COOKIE_NAME];
+    const cookie = req.cookies.userCookie;
     // Check the httpOnly session cookie for the current user
     if (!cookie) throw new Error('You must be signed in to continue');
 
@@ -13,7 +12,7 @@ module.exports = async (req: any, res: any, next: any) => {
 
     next();
   } catch(err) {
-    err.status = 401;
+    // err.status = 401;
     next(err);
   }
 };

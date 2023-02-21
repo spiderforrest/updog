@@ -49,7 +49,7 @@ const signIn = async (usernameOrEmail: string, password: string) => {
     throw new Error('Invalid password');
     return makeToken(rows)
   } catch (err) {
-    err.status = 401;
+    // err.status = 401;
     throw error;
   }
 }

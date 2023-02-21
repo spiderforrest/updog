@@ -1,4 +1,4 @@
-module.exports = (err, req, res, next) => {
+module.exports = (err: any, req: any, res: any, next: any) => {
   const status = err.status || 500;
 
   res.status(status);
@@ -11,3 +11,4 @@ module.exports = (err, req, res, next) => {
     status,
     message: err.message,
   });
+}
