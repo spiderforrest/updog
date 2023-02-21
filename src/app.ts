@@ -24,7 +24,7 @@ app.use('/test', testRoute);
 
 // Error handling & 404 middleware for when
 // a request doesn't match any app routes
-app.use(notFound);
+// app.use(notFound);
 app.use(error);
 
 app.listen(3000, () => {

@@ -37,21 +37,20 @@ const signUp = async (response: any, username: string, email: string, password: 
   );
 }
 
-const signIn = async (usernameOrEmail: string, password: string) => {
-  try {
-    const { rows } = await pool.query(
+const signIn = async (res: any, usernameOrEmail: string, password: string) => {
+    const results = await pool.query(
       "SELECT * FROM users WHERE email=$1 OR username=$1",
-      [usernameOrEmail]
+      [usernameOrEmail],
+      (error: any, results:any) => {
+        if (error) {
+          throw error;
+        }
+        res.status(200).send(`Signed in with UUID: ${results.rows[0].uuid}`);
+      }
     );
 
-    if (!rows[0]) throw new Error('Invalid username or email');
-    if (!bcrypt.compareSync(password, rows[0].hash))
-    throw new Error('Invalid password');
-    return makeToken(rows)
-  } catch (err) {
-    // err.status = 401;
-    throw error;
-  }
+    if (!bcrypt.compareSync(password, results.rows[0].hash))
+    return makeToken(results.rows[0])
 }
 
 // }}}

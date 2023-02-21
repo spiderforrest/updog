@@ -16,9 +16,8 @@ function genCookie(res: any, token: string) {
 
 authRoute.post("/signUp", async (req: any, res: any, next: any) => {
   try {
-    const token = signUp(res, req.body.username, req.body.email, req.body.password);
+    const token = await signUp(res, req.body.username, req.body.email, req.body.password);
     genCookie(res, token)
-    next();
   } catch(err){
     next(err);
   }
@@ -26,9 +25,8 @@ authRoute.post("/signUp", async (req: any, res: any, next: any) => {
 
 authRoute.post("/signIn", async (req: any, res: any, next: any) => {
   try {
-    const token = signUp(res, req.body.username, req.body.email, req.body.password);
+    const token = await signIn(res, req.body.username || req.body.email, req.body.password);
     genCookie(res, token)
-    next();
   } catch(err){
     next(err);
   }
